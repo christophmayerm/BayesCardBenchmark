@@ -78,30 +78,32 @@ The optimal trained models for each dataset are already stored. If you are only 
 ## Reproducing IMDB results:
    First prepare the data, i.e. adding some fanout columns
    ```
-   python run_experiment.py --dataset imdb 
-          --generate_hdf 
-          --csv_path ../imdb-benchmark
-          --hdf_path ../imdb-benchmark/gen_hdf
+   python run_experiment.py --dataset imdb \
+       --generate_hdf \
+       --csv_path imdb-benchmark \
+       --hdf_path imdb-benchmark/gen_hdf
+
    ```
    Then train a Bayescard ensemble of BNs
    ```
-   python run_experiment.py --dataset imdb 
-          --generate_models
-          --hdf_path ../imdb-benchmark/gen_hdf
-          --model_path Benchmark/IMDB
-          --learning_algo chow-liu
-          --max_parents 1
-          --sample_size 200000
+   python run_experiment.py --dataset imdb \
+       --generate_models \
+       --hdf_path imdb-benchmark/gen_hdf \
+       --model_path Benchmark/IMDB \
+       --learning_algo chow-liu \
+       --max_parents 1 \
+       --sample_size 200000
+
    ```
    Evaluate the learnt Bayescard
    ```
-   python run_experiment.py --dataset imdb 
-          --evaluate_cardinalities
-          --model_path Benchmark/IMDB
-          --query_file_location Benchmark/IMDB/job-light.sql
-          --learning_algo chow-liu
-          --max_parents 1
-          --infer_algo exact-jit
+   python run_experiment.py --dataset imdb \
+       --evaluate_cardinalities \
+       --model_path Benchmark/IMDB \
+       --query_file_location Benchmark/IMDB/job-light.sql \
+       --learning_algo chow-liu \
+       --max_parents 1 \
+       --infer_algo exact-jit
    ```
    If you find the code helpful, please cite our paper:
    ```

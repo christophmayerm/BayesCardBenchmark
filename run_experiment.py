@@ -24,8 +24,8 @@ if __name__ == '__main__':
     parser.add_argument('--generate_hdf', help='Prepare hdf5 files for single tables', action='store_true')
     parser.add_argument('--generate_sampled_hdfs', help='Prepare hdf5 files for single tables', action='store_true')
     parser.add_argument('--csv_seperator', default=',')
-    parser.add_argument('--csv_path', default='../imdb-benchmark')
-    parser.add_argument('--hdf_path', default='../imdb-benchmark/gen_hdf')
+    parser.add_argument('--csv_path', default='imdb-benchmark')
+    parser.add_argument('--hdf_path', default='imdb-benchmark/gen_hdf')
     parser.add_argument('--max_rows_per_hdf_file', type=int, default=20000000)
     parser.add_argument('--hdf_sample_size', type=int, default=1000000)
 

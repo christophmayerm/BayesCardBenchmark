@@ -73,6 +73,10 @@ def evaluate_cardinality_imdb(schema, model_path, query_path, infer_algo, learni
 
     latency = []
     q_errors = []
+
+    log_estimates = []
+    log_estimates.append("true, pred, q-error")
+
     for i, q in enumerate(queries):
         tic = time.time()
         try:
@@ -87,9 +91,14 @@ def evaluate_cardinality_imdb(schema, model_path, query_path, infer_algo, learni
         print(f"predicting query no {i}: {real_query[i]} \n")
         print(f"true cardinality {true[i]}, predicted {pred} with q-error {error}")
         q_errors.append(error)
+        log_estimates.append(str(true[i]) + ", " + str(pred) + ", " + str(error))
     print("=====================================================================================")
-    for i in [50, 90, 95, 99, 100]:
-        print(f"q-error {i}% percentile is {np.percentile(q_errors, i)}")
+    #for i in [50, 90, 95, 99, 100]:
+    #    print(f"q-error {i}% percentile is {np.percentile(q_errors, i)}")
+
     print(f"average latency is {np.mean(latency)*1000} ms")
 
+    with open("output/estimates_imdb.csv", "w") as f:
+        f.write("\n".join(log_estimates))
+    
     return latency, q_errors

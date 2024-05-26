@@ -18,7 +18,7 @@ def categorical_qcut(series, q, start_value, fanout=0, fanout_values=[]):
     cum_freq = 0
     
     value = start_value
-    for i, (val, freq) in enumerate(value_counts.iteritems()):
+    for i, (val, freq) in enumerate(value_counts.items()):
         if len(values_in_bin) == 0:
             left = i
         values_in_bin.append(val)
